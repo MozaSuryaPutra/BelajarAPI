@@ -1,0 +1,28 @@
+[
+  {
+    "id": 3,
+    "name": "Iko Indra Gunawan",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Moza",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  }
+]
