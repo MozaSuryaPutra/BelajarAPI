@@ -2,8 +2,8 @@ const studentRepository = require("../repositories/students.js");
 const { NotFoundError, InternalServerError } = require("../utils/request.js");
 const { imageUpload } = require("../utils/image-kit");
 
-exports.getStudents = (name, nickName, bachelor) => {
-  const students = studentRepository.getStudents(name, nickName, bachelor);
+exports.getStudents = (name, nickname, bachelor) => {
+  const students = studentRepository.getStudents(name, nickname, bachelor);
   if (students.length < 1) {
     throw new NotFoundError("Students is not found");
   }

@@ -5,7 +5,7 @@ exports.validateGetStudents = (req, res, next) => {
   // Validate the query
   const validateQuery = z.object({
     name: z.string(),
-    nickName: z.string().optional(),
+    nickname: z.string().optional(),
     bachelor: z.string().optional(),
   });
 

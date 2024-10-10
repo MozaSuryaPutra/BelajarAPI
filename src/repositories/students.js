@@ -1,6 +1,6 @@
 const fs = require("fs");
 const students = require("../../data/students.json");
-exports.getStudents = (name, nickName, bachelor) => {
+exports.getStudents = (name, nickname, bachelor) => {
   const searchedStudent = students.filter((student) => {
     // Do filter logic here
     let result = true;
@@ -10,10 +10,10 @@ exports.getStudents = (name, nickName, bachelor) => {
         .includes(name.toLowerCase());
       result = result && isFoundName;
     }
-    if (nickName) {
-      const isFoundNickName = student.nickName
+    if (nickname) {
+      const isFoundNickName = student.nickname
         .toLowerCase()
-        .includes(nickName.toLowerCase());
+        .includes(nickname.toLowerCase());
       result = result && isFoundNickName;
     }
     if (bachelor) {

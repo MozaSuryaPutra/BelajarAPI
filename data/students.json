@@ -1,169 +1,136 @@
 [
-    {
-        "id": 3,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
+  {
+    "id": 3,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
     },
-    {
-        "id": 4,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 5,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 6,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 7,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 8,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 9,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 10,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 11,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 12,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 13,
-        "address": {},
-        "education": {}
-    },
-    {
-        "id": 14,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 15,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 16,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 17,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 18,
-        "name": "Moza Surya Putra Gans",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "East Java",
-            "city": "Surabaya"
-        },
-        "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
-        }
-    },
-    {
-        "id": 19,
-        "name": "moza ",
-        "nickname": "Iko",
-        "class": "FSW-1",
-        "address": {
-            "province": "Lampung",
-            "city": "Metro"
-        },
-        "education": {
-            "bachelor": "Unila"
-        },
-        "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_I71VjQ8rN.pdf"
-    },
-    {
-        "id": 20,
-        "name": "moza Surya",
-        "nickname": "Brock Lesnar",
-        "class": "FSW-1",
-        "address": {
-            "province": "Lampung",
-            "city": "Metro"
-        },
-        "education": {
-            "bachelor": "Unila"
-        },
-        "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_OMVyiVEO3.pdf"
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
     }
+  },
+  {
+    "id": 4,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+
+  {
+    "id": 14,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 17,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 18,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    }
+  },
+  {
+    "id": 19,
+    "name": "moza ",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "Lampung",
+      "city": "Metro"
+    },
+    "education": {
+      "bachelor": "Unila"
+    },
+    "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_I71VjQ8rN.pdf"
+  },
+  {
+    "id": 20,
+    "name": "moza Surya",
+    "nickname": "Brock Lesnar",
+    "class": "FSW-1",
+    "address": {
+      "province": "Lampung",
+      "city": "Metro"
+    },
+    "education": {
+      "bachelor": "Unila"
+    },
+    "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_OMVyiVEO3.pdf"
+  },
+  {
+    "id": 21,
+    "name": "Moza Surya Putra Gans",
+    "nickname": "Iko",
+    "class": "FSW-1",
+    "address": {
+      "province": "East Java",
+      "city": "Surabaya"
+    },
+    "education": {
+      "bachelor": "UPN Veteran Jawa Timur"
+    },
+    "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/Mercedes_Car_EQC_300kW_Edition_-_900x598_1_X3bJjD9di.png"
+  }
 ]
