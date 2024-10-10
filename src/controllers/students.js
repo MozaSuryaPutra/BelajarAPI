@@ -18,10 +18,25 @@ exports.getStudentsById = (req, res, next) => {
   successResponse(res, data, "Get Students By Id is Success");
 };
 
-exports.createStudent = (req, res, next) => {
-  const Data = req.body;
-  const data = studentService.createStudent(Data);
-  successResponse(res, data, "Create Student is Success");
+exports.createStudent = async (req, res, next) => {
+  // Convert to student data format
+  const requestBody = {
+    ...req.body,
+    address: {
+      province: req.body["address.province"],
+      city: req.body["address.city"],
+    },
+    education: {
+      bachelor: req.body["education.bachelor"],
+    },
+  };
+  delete requestBody["address.province"];
+  delete requestBody["address.city"];
+  delete requestBody["education.bachelor"];
+
+  // Create the new student
+  const data = await studentService.createStudent(requestBody, req.files);
+  successResponse(res, data);
 };
 
 exports.updateStudent = (req, res, next) => {

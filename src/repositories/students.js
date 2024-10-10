@@ -34,6 +34,7 @@ exports.getStudentById = (id) => {
 };
 
 exports.createStudent = (data) => {
+  // Find the max index to defnine the new data id
   const maxId = students.reduce(
     (max, student) => student.id > max && student.id,
     0
@@ -41,12 +42,13 @@ exports.createStudent = (data) => {
 
   const newStudent = {
     id: maxId + 1,
-    //Titik 3 ngambil value semua objek tanpa ambil semuanya
     ...data,
   };
 
+  /* Add data to current array students */
   students.push(newStudent);
 
+  // Save the latest data to json
   fs.writeFileSync(
     "./data/students.json",
     JSON.stringify(students, null, 4),

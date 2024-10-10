@@ -1,17 +1,15 @@
+require("dotenv").config(); // To enable .env called
+const bodyParser = require("body-parser");
 const express = require("express"); // Import express
-const fs = require("fs");
-const path = require("path");
-const students = require("./data/students.json");
-// Inisialisasi Aplikasi Express
 const app = express();
 const port = 3000;
-const { z } = require("zod");
 require("express-async-errors");
-const router = require("./src/routes");
+const router = require("./src/routes/index.js");
 const {
   errorHandler,
   notFoundURLHandler,
 } = require("./src/middlewares/errors.js");
+const fileUpload = require("express-fileupload");
 // const successResponse = (res, data) => {
 //   res.status(200).json({
 //     success: true,
@@ -45,8 +43,11 @@ app.get("/", (req, res) => {
 //   res.send("lucunyaaaa");
 // });
 
-app.use("/", router);
-
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  })
+);
 // app.get("/students/:id", (req, res) => {
 //   //Make a validation schema
 //   const validateSchema = z.object({
@@ -300,7 +301,7 @@ app.use("/", router);
 
 //   successResponse(res, deletedStudent);
 // });
-
+app.use("/", router);
 app.use("*", notFoundURLHandler);
 
 // This function is to handle error when API hit, it always be the last middleware

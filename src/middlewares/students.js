@@ -33,27 +33,45 @@ exports.validateGetStudentsById = (req, res, next) => {
 };
 
 exports.validateCreateStudent = (req, res, next) => {
+  console.log(req.body);
+  // Validation body schema
   const validateBody = z.object({
     name: z.string(),
     nickname: z.string(),
     class: z.string(),
-    address: z.object({
-      province: z.string(),
-      city: z.string(),
-    }),
-    education: z
-      .object({
-        bachelor: z.string().optional().nullable(),
-      })
-      .optional()
-      .nullable(),
+    "address.city": z.string(),
+    "address.province": z.string(),
+    "education.bachelor": z.string().optional().nullable(),
   });
 
-  //Validasi
+  // The file is not required
+  const validateFileBody = z
+    .object({
+      profilePicture: z
+        .object({
+          name: z.string(),
+          data: z.any(),
+        })
+        .nullable()
+        .optional(),
+    })
+    .nullable()
+    .optional();
+
+  // Validate
   const result = validateBody.safeParse(req.body);
   if (!result.success) {
+    // If validation fails, return error messages
     throw new BadRequestError(result.error.errors);
   }
+
+  // Validate
+  const resultValidateFiles = validateFileBody.safeParse(req.files);
+  if (!resultValidateFiles.success) {
+    // If validation fails, return error messages
+    throw new BadRequestError(resultValidateFiles.error.errors);
+  }
+
   next();
 };
 
