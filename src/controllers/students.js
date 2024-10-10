@@ -1,5 +1,6 @@
 const studentService = require("../services/students");
 const { successResponse } = require("../utils/response");
+const studentRepository = require("../repositories/students");
 
 exports.getStudents = (req, res, next) => {
   // Call the usecase or service
@@ -39,10 +40,27 @@ exports.createStudent = async (req, res, next) => {
   successResponse(res, data);
 };
 
-exports.updateStudent = (req, res, next) => {
+exports.updateStudent = async (req, res, next) => {
   const { id } = req.params;
-  const data = req.body;
-  const updateTheStudent = studentService.updateStudent(id, data);
+  const student = studentRepository.getStudentById(id);
+  const requestBody = {
+    ...req.body,
+    address: {
+      province: req.body["address.province"] || student.address.province,
+      city: req.body["address.city"] || student.address.city,
+    },
+    education: {
+      bachelor: req.body["education.bachelor"] || student.education.bachelor,
+    },
+  };
+  delete requestBody["address.province"];
+  delete requestBody["address.city"];
+  delete requestBody["education.bachelor"];
+  const updateTheStudent = await studentService.updateStudent(
+    id,
+    requestBody,
+    req.files
+  );
   successResponse(res, updateTheStudent, "Update Student is Success");
 };
 

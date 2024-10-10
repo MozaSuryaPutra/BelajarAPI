@@ -89,19 +89,12 @@ exports.validateUpdateStudent = (req, res, next) => {
   }
 
   const validateBody = z.object({
-    name: z.string(),
-    nickname: z.string(),
-    class: z.string(),
-    address: z.object({
-      province: z.string(),
-      city: z.string(),
-    }),
-    education: z
-      .object({
-        bachelor: z.string().optional().nullable(),
-      })
-      .optional()
-      .nullable(),
+    name: z.string().optional().nullable(),
+    nickname: z.string().optional().nullable(),
+    class: z.string().optional().nullable(),
+    "address.city": z.string().optional().nullable(),
+    "address.province": z.string().optional().nullable(),
+    "education.bachelor": z.string().optional().nullable(),
   });
 
   //Validasi
@@ -109,6 +102,25 @@ exports.validateUpdateStudent = (req, res, next) => {
   if (!result2.success) {
     throw new BadRequestError(result2.error.errors);
   }
+
+  const validateFileBody = z
+    .object({
+      profilePicture: z
+        .object({
+          name: z.string(),
+          data: z.any(),
+        })
+        .nullable()
+        .optional(),
+    })
+    .nullable()
+    .optional();
+  const resultValidateFiles = validateFileBody.safeParse(req.files);
+  if (!resultValidateFiles.success) {
+    // If validation fails, return error messages
+    throw new BadRequestError(resultValidateFiles.error.errors);
+  }
+
   next();
 };
 

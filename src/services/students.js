@@ -28,10 +28,14 @@ exports.createStudent = async (data, file) => {
   return studentRepository.createStudent(data);
 };
 
-exports.updateStudent = (id, data) => {
+exports.updateStudent = async (id, data, file) => {
   const student = studentRepository.getStudentById(id);
   if (!student) {
     throw new NotFoundError("Student is not found");
+  }
+
+  if (file?.profilePicture) {
+    data.profilePicture = await imageUpload(file.profilePicture);
   }
 
   const updatedStudent = studentRepository.updateStudent(id, data);

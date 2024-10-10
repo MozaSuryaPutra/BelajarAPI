@@ -140,16 +140,30 @@
     },
     {
         "id": 19,
-        "name": "Moza Surya Putra Gans",
+        "name": "moza ",
         "nickname": "Iko",
         "class": "FSW-1",
         "address": {
-            "province": "East Java",
-            "city": "Surabaya"
+            "province": "Lampung",
+            "city": "Metro"
         },
         "education": {
-            "bachelor": "UPN Veteran Jawa Timur"
+            "bachelor": "Unila"
         },
-        "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/Mercedes_Car_EQC_300kW_Edition_-_900x598_1_qdxeUO1uR.png"
+        "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_I71VjQ8rN.pdf"
+    },
+    {
+        "id": 20,
+        "name": "moza Surya",
+        "nickname": "Brock Lesnar",
+        "class": "FSW-1",
+        "address": {
+            "province": "Lampung",
+            "city": "Metro"
+        },
+        "education": {
+            "bachelor": "Unila"
+        },
+        "profilePicture": "https://ik.imagekit.io/lpzgk6g6j/UTS_OMVyiVEO3.pdf"
     }
 ]
