@@ -2,26 +2,27 @@ const studentRepository = require("../repositories/students.js");
 const { NotFoundError, InternalServerError } = require("../utils/request.js");
 const { imageUpload } = require("../utils/image-kit");
 
-exports.getStudents = (name, nickname, bachelor) => {
-  const students = studentRepository.getStudents(name, nickname, bachelor);
+exports.getStudents = async (name, nickname) => {
+  const students = await studentRepository.getStudents(name, nickname);
   if (students.length < 1) {
     throw new NotFoundError("Students is not found");
   }
   return students;
 };
 
-exports.getStudentsById = (id) => {
-  const students = studentRepository.getStudentById(id);
-  if (!students) {
-    throw new NotFoundError("Students is not found");
+exports.getStudentById = async (id) => {
+  const student = await studentRepository.getStudentById(id);
+  if (!student) {
+    throw new NotFoundError("Student is Not Found!");
   }
-  return students;
+
+  return student;
 };
 
 exports.createStudent = async (data, file) => {
   // Upload file to image kit
-  if (file?.profilePicture) {
-    data.profilePicture = await imageUpload(file.profilePicture);
+  if (file?.profile_picture) {
+    data.profile_picture = await imageUpload(file.profile_picture);
   }
 
   // Create the data
@@ -29,16 +30,16 @@ exports.createStudent = async (data, file) => {
 };
 
 exports.updateStudent = async (id, data, file) => {
-  const student = studentRepository.getStudentById(id);
+  const student = await studentRepository.getStudentById(id);
   if (!student) {
     throw new NotFoundError("Student is not found");
   }
 
-  if (file?.profilePicture) {
-    data.profilePicture = await imageUpload(file.profilePicture);
+  if (file?.profile_picture) {
+    data.profile_picture = await imageUpload(file.profile_picture);
   }
 
-  const updatedStudent = studentRepository.updateStudent(id, data);
+  const updatedStudent = await studentRepository.updateStudent(id, data);
   if (!updatedStudent) {
     throw new InternalServerError(["Failed to update student!"]);
   }
@@ -46,12 +47,12 @@ exports.updateStudent = async (id, data, file) => {
   return updatedStudent;
 };
 
-exports.deleteStudentById = (id) => {
-  const studentExist = studentRepository.getStudentById(id);
+exports.deleteStudentById = async (id) => {
+  const studentExist = await studentRepository.getStudentById(id);
   if (!studentExist) {
     throw new NotFoundError("Student is not found");
   }
-  const deletestudent = studentRepository.deleteStudentById(id);
+  const deletestudent = await studentRepository.deleteStudentById(id);
   if (!deletestudent) {
     throw new InternalServerError("Failed to delete student");
   }

@@ -33,21 +33,18 @@ exports.validateGetStudentsById = (req, res, next) => {
 };
 
 exports.validateCreateStudent = (req, res, next) => {
-  console.log(req.body);
   // Validation body schema
   const validateBody = z.object({
     name: z.string(),
-    nickname: z.string(),
-    class: z.string(),
-    "address.city": z.string(),
-    "address.province": z.string(),
-    "education.bachelor": z.string().optional().nullable(),
+    nick_name: z.string(),
+    class_id: z.string(),
+    university_id: z.string(),
   });
 
   // The file is not required
   const validateFileBody = z
     .object({
-      profilePicture: z
+      profile_picture: z
         .object({
           name: z.string(),
           data: z.any(),
@@ -90,11 +87,9 @@ exports.validateUpdateStudent = (req, res, next) => {
 
   const validateBody = z.object({
     name: z.string().optional().nullable(),
-    nickname: z.string().optional().nullable(),
-    class: z.string().optional().nullable(),
-    "address.city": z.string().optional().nullable(),
-    "address.province": z.string().optional().nullable(),
-    "education.bachelor": z.string().optional().nullable(),
+    nick_name: z.string().optional().nullable(),
+    class_id: z.string().optional().nullable(),
+    university_id: z.string().optional().nullable(),
   });
 
   //Validasi
@@ -105,7 +100,7 @@ exports.validateUpdateStudent = (req, res, next) => {
 
   const validateFileBody = z
     .object({
-      profilePicture: z
+      profile_picture: z
         .object({
           name: z.string(),
           data: z.any(),

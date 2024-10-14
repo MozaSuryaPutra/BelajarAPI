@@ -1,101 +1,71 @@
 const fs = require("fs");
+const { PrismaClient } = require("@prisma/client");
+const JSONBigInt = require("json-bigint");
 const students = require("../../data/students.json");
-exports.getStudents = (name, nickname, bachelor) => {
-  const searchedStudent = students.filter((student) => {
-    // Do filter logic here
-    let result = true;
-    if (name) {
-      const isFoundName = student.name
-        .toLowerCase()
-        .includes(name.toLowerCase());
-      result = result && isFoundName;
-    }
-    if (nickname) {
-      const isFoundNickName = student.nickname
-        .toLowerCase()
-        .includes(nickname.toLowerCase());
-      result = result && isFoundNickName;
-    }
-    if (bachelor) {
-      const isFoundBachelor = student.education.bachelor
-        .toLowerCase()
-        .includes(bachelor.toLowerCase());
-      result = result && isFoundBachelor;
-    }
 
-    return result;
+const prisma = new PrismaClient();
+
+exports.getStudents = async (name, nickName) => {
+  const searchedStudents = await prisma.students.findMany({
+    where: {
+      OR: [
+        { name: { contains: name, mode: "insensitive" } },
+        { nick_name: { contains: nickName, mode: "insensitive" } },
+      ],
+    },
+    include: {
+      classes: true,
+      universities: true,
+    },
   });
-  return searchedStudent;
+
+  // Convert BigInt fields to string for safe serialization
+  const serializedStudents = JSONBigInt.stringify(searchedStudents);
+  return JSONBigInt.parse(serializedStudents);
 };
 
-exports.getStudentById = (id) => {
-  const student = students.find((student) => student.id == id);
-  return student;
+exports.getStudentById = async (id) => {
+  // find student by id
+  const student = await prisma.students.findFirst({
+    where: {
+      id: id,
+    },
+  });
+
+  // Convert BigInt fields to string for safe serialization
+  const serializedStudents = JSONBigInt.stringify(student);
+  return JSONBigInt.parse(serializedStudents);
 };
 
-exports.createStudent = (data) => {
-  // Find the max index to defnine the new data id
-  const maxId = students.reduce(
-    (max, student) => student.id > max && student.id,
-    0
-  );
+exports.createStudent = async (data) => {
+  const newStudent = await prisma.students.create({
+    data,
+  });
 
-  const newStudent = {
-    id: maxId + 1,
-    ...data,
-  };
-
-  /* Add data to current array students */
-  students.push(newStudent);
-
-  // Save the latest data to json
-  fs.writeFileSync(
-    "./data/students.json",
-    JSON.stringify(students, null, 4),
-    "utf-8"
-  );
-
-  return newStudent;
+  // Convert BigInt fields to string for safe serialization
+  const serializedStudents = JSONBigInt.stringify(newStudent);
+  return JSONBigInt.parse(serializedStudents);
 };
 
-exports.updateStudent = (id, data) => {
-  const index = students.findIndex((student) => student.id === parseInt(id));
-  // TODO: Update the data
-  if (index !== -1) {
-    students.splice(index, 1, {
-      ...students[index],
-      ...data,
-    });
-  } else {
-    //TODO
-    throw new NotFoundError("Student not found");
-  }
-  // TODO: Update the json data
-  fs.writeFileSync(
-    "./data/students.json",
-    JSON.stringify(students, null, 4),
-    "utf-8"
-  );
-  return students[index];
+exports.updateStudent = async (id, data) => {
+  const updateUser = await prisma.students.update({
+    where: {
+      id: id,
+    },
+    data: data,
+  });
+
+  const updateStudents = JSONBigInt.stringify(updateUser);
+  return JSONBigInt.parse(updateStudents);
 };
 
-exports.deleteStudentById = (id) => {
-  const studentIndex = students.findIndex((student) => student.id == id);
-  if (studentIndex < 0) {
-    // If no index found
-    // TODO: make a error class
-    return null;
-  }
+exports.deleteStudentById = async (id) => {
+  const deleteUser = await prisma.students.delete({
+    where: {
+      id: id,
+    },
+  });
 
-  // If the index found
-  const deletedStudent = students.splice(studentIndex, 1);
-
-  // Update the json
-  fs.writeFileSync(
-    "./data/students.json",
-    JSON.stringify(students, null, 4),
-    "utf-8"
-  );
-
-  return deletedStudent;
+  const deleteStudents = JSONBigInt.stringify(deleteUser);
+  return JSONBigInt.parse(deleteStudents);
 };
