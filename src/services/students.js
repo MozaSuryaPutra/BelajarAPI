@@ -29,22 +29,28 @@ exports.createStudent = async (data, file) => {
   return studentRepository.createStudent(data);
 };
 
-exports.updateStudent = async (id, data, file) => {
-  const student = await studentRepository.getStudentById(id);
-  if (!student) {
-    throw new NotFoundError("Student is not found");
+exports.updateCars = async (id, data, file) => {
+  // find Car is exist or not (validate the data)
+  const existingCar = carRepository.getCarsById(id);
+  if (!existingCar) {
+    throw new NotFoundError("Car is Not Found!");
   }
 
-  if (file?.profile_picture) {
-    data.profile_picture = await imageUpload(file.profile_picture);
+  data = {
+    ...existingCar,
+    ...data,
+  };
+
+  if (file?.image) {
+    data.image = await imageUpload(file.image);
   }
 
-  const updatedStudent = await studentRepository.updateStudent(id, data);
-  if (!updatedStudent) {
-    throw new InternalServerError(["Failed to update student!"]);
+  const updatedCar = carRepository.updateCars(id, data);
+  if (!updatedCar) {
+    throw new InternalServerError(["Failed to update Car!"]);
   }
 
-  return updatedStudent;
+  return updatedCar;
 };
 
 exports.deleteStudentById = async (id) => {

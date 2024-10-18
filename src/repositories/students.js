@@ -47,16 +47,26 @@ exports.createStudent = async (data) => {
   return JSONBigInt.parse(serializedStudents);
 };
 
-exports.updateStudent = async (id, data) => {
-  const updateUser = await prisma.students.update({
+exports.updateCars = async (id, data) => {
+  const updatedCars = await prisma.cars.update({
     where: {
       id: id,
     },
-    data: data,
+    include: {
+      carModels: {
+        include: {
+          type: true,
+          manufactures: true,
+          transmissions: true,
+        },
+      },
+    },
+    data,
   });
 
-  const updateStudents = JSONBigInt.stringify(updateUser);
-  return JSONBigInt.parse(updateStudents);
+  // Convert BigInt fields to string for safe serialization
+  const serializedCars = JSONBigInt.stringify(updatedCars);
+  return JSONBigInt.parse(serializedCars);
 };
 
 exports.deleteStudentById = async (id) => {
